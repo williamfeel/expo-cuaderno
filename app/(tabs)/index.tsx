@@ -1,74 +1,105 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Link } from "expo-router";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
 
-export default function HomeScreen() {
+export default function Index() {
+
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#F5F5F5" }}>
+        <View style={styles.headerContainer}>
+          <Text style={styles.title}>Gestión Financiera</Text>
+          <Text style={styles.subtitle}>Noralba Montenegro</Text>
+        </View>
+        <View style={styles.bodyContainer}>
+          <Text style={styles.header}>¡Hola! ¿Qué deseas hacer?</Text>
+          <View style={styles.containerButtons}>
+            <Link asChild href="/ingresos">
+            <TouchableOpacity>
+              <View style={styles.containerText}>
+                <View style={styles.button}>
+                  <MaterialCommunityIcons name="hand-heart" size={30} color={"#6200EE"} />
+                </View>
+                <Text style={styles.buttonText}>Registrar un Ingreso</Text>
+              </View>
+            </TouchableOpacity>
+            </Link>
+            <Link asChild href="/egresos">
+            <TouchableOpacity>
+              <View style={styles.containerText}>
+                <View style={styles.button}>
+                  <MaterialCommunityIcons name="bank-transfer-out" size={36} color={"#6200EE"} />
+                </View>
+                <Text style={styles.buttonText}>Registrar un Egreso</Text>
+              </View>
+            </TouchableOpacity>
+            </Link>
+          </View>
+        </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  headerContainer: {
+    backgroundColor: '#6200EE', // Material 3 color: Morado suave
+    padding: 16,
+    borderBottomLeftRadius: 24,  // Bordes más redondeados
+    borderBottomRightRadius: 24,
     alignItems: 'center',
-    gap: 8,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 4,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  bodyContainer: {
+    flex: 1,
+    justifyContent:"center"
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  header: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#000',
+    textAlign: 'center',
+    marginBottom: 40,
+  },
+  title: {
+    fontSize: 26,  // Un tamaño más grande
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    marginBottom: 4,
+  },
+  subtitle: {
+    fontSize: 18,
+    fontStyle: 'italic',
+    color: '#FFFFFF',
+  },
+  button: {
+    backgroundColor: "#fff",
+    height: 80,
+    marginHorizontal: 16,
+    marginVertical: 8,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: "center",
+    borderWidth: 0.5,
+    borderColor: '#dadada',
+    elevation:8,
+  },
+  buttonText: {
+    color: '#000',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  containerButtons: {
+    flexDirection: "row",
+    justifyContent:"space-around",
+  },
+  containerText: {
+    flexDirection: "column",
   },
 });

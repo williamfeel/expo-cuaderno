@@ -32,10 +32,29 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/NotoSerif-Italic-VariableFont_wdth,wght.ttf",
+            "NotoSerif-VariableFont_wdth,wght.ttf"
+          ]
+        }
+      ],
+      "expo-sqlite"
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "91a22da3-61a5-4531-9aee-d6be27f4c30b"
+      }
+    },
+    "owner": "williamfeel"
   }
 }
